@@ -22,6 +22,14 @@ pipeline {
         }
       }
     }
+    stage('Install Docker') {
+      steps {
+        sh '''
+        apt update
+        apt install -y docker.io
+        '''
+      }
+    }
     stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "saidinesh12/ultimate-cicd:${BUILD_NUMBER}"
